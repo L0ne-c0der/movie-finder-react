@@ -2,17 +2,17 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const filterSlice = createSlice({
   name: "filter",
-  initialState: "New",
+  initialState: {
+    sortBy: "new", // new, ascending, descending, rating
+  },
   reducers: {
-    byNew: () => "New",
-    byAscending: () => "Ascending",
-    byDescending: () => "Descending",
-    byFilter: (state, action) => action.payload,
+    setSortBy: (state, action) => {
+      state.sortBy = action.payload;
+    }
   },
 });
 
-export const { byNew, byAscending, byDescending, byFilter } = filterSlice.actions;
+export const { setSortBy } = filterSlice.actions;
 export default filterSlice.reducer;
 
 
-  

@@ -5,11 +5,15 @@ import CardGrid from "@/components/custom/CardGrid";
 import Footer from "@/components/custom/Footer";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { sortMovies } from "../util/sortMovies";
 const MoviesPage = () => {
     // const heading = useSelector((state) => state.navigation)
     const heading = "Upcoming";
     const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const sortBy = useSelector(state => state.filter.sortBy);
+
 
     useEffect(() => {
         const fetchMovies = async () => {
@@ -41,6 +45,9 @@ const MoviesPage = () => {
         fetchMovies();
     }, []);
 
+    const sortedMovies = sortMovies(movies, sortBy);
+    
+
     return (
       <div className="container mx-auto p-6">
         <Navbar selected="Upcoming"/>
@@ -53,7 +60,7 @@ const MoviesPage = () => {
             <p className="text-xl">Loading movies...</p>
             </div>
             ) : (
-            <CardGrid movies={movies} />
+            <CardGrid movies={sortedMovies} />
         )}
         <Footer />
       </div>

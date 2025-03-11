@@ -5,11 +5,13 @@ import SortingButtons from "@/components/custom/SortingButtons";
 import CardGrid from "@/components/custom/CardGrid";
 import Footer from "@/components/custom/Footer";
 import { useSelector } from "react-redux";
+import { sortMovies } from "../util/sortMovies";
 
-const MoviesPage = ({ onMovieSelect }) => {
+const MoviesPage = () => {
     const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const heading = "Top Rated";
+    const sortBy = useSelector(state => state.filter.sortBy);
 
     useEffect(() => {
         const fetchMovies = async () => {
@@ -17,7 +19,7 @@ const MoviesPage = ({ onMovieSelect }) => {
                 const response = await axios.get(
                     `https://api.themoviedb.org/3/movie/top_rated`, {
                     headers: {
-                        Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`
+                        Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`
                     }
                 });
                 
@@ -41,9 +43,7 @@ const MoviesPage = ({ onMovieSelect }) => {
         fetchMovies();
     }, []);
 
-    const handleMovieSelect = (movieId) => {
-        onMovieSelect(movieId);
-    };
+    const sortedMovies = sortMovies(movies, sortBy);
 
     return (
         <div className="container mx-auto p-6">
@@ -58,8 +58,7 @@ const MoviesPage = ({ onMovieSelect }) => {
                 </div>
             ) : (
                 <CardGrid 
-                    movies={movies} 
-                    onMovieSelect={handleMovieSelect}
+                    movies={sortedMovies}
                 />
             )}
             <Footer />

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SortingButtons from "./SortingButtons";
 
-const SearchSortBar = ({ onSearch }) => {
-  const [searchQuery, setSearchQuery] = useState("");
+const SearchSortBar = ({ onSearch, initialQuery = "" }) => {
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,6 +18,10 @@ const SearchSortBar = ({ onSearch }) => {
       onSearch(searchQuery);
     }
   };
+
+  useEffect(() => {
+    setSearchQuery(initialQuery);
+  }, [initialQuery]);
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col items-center w-full">

@@ -1,13 +1,48 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@/components/ui/button';
-const SortingButtons = () => (
-    <div className="flex space-x-2 mt-4">
-      <Button variant="default">New</Button>
-      <Button variant="outline">Ascending</Button>
-      <Button variant="outline">Descending</Button>
-      <Button variant="outline">Rating</Button>
+import { setSortBy } from '@/slices/filterSlice';
+
+const SortingButtons = () => {
+  const dispatch = useDispatch();
+  const currentSort = useSelector(state => state.filter.sortBy);
+
+  const handleSort = (sortType) => {
+    dispatch(setSortBy(sortType));
+  };
+
+  return (
+    <div className="flex space-x-2">
+      <Button 
+        variant={currentSort === "new" ? "default" : "outline"}
+        onClick={() => handleSort("new")}
+        size="sm"
+      >
+        New
+      </Button>
+      <Button 
+        variant={currentSort === "ascending" ? "default" : "outline"}
+        onClick={() => handleSort("ascending")}
+        size="sm"
+      >
+        A-Z
+      </Button>
+      <Button 
+        variant={currentSort === "descending" ? "default" : "outline"}
+        onClick={() => handleSort("descending")}
+        size="sm"
+      >
+        Z-A
+      </Button>
+      <Button 
+        variant={currentSort === "rating" ? "default" : "outline"}
+        onClick={() => handleSort("rating")}
+        size="sm"
+      >
+        Rating
+      </Button>
     </div>
   );
-  export default SortingButtons;
-  //action to specify the default button
-  //prolly make it smaller
+};
+
+export default SortingButtons;
