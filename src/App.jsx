@@ -34,12 +34,20 @@
 
 // export default App
 import { Button } from "@/components/ui/button"
+import MovieCard  from "./components/custom/MovieCard"
+import NavButton from "./components/custom/NavButton"
+import NavBar from "./components/custom/NavBar"
+import Footer from "./components/custom/Footer"
+import SortingButtons from "./components/custom/SortingButtons"
+import CardGrid from "./components/custom/CardGrid"
+import TopRatedMovies from "./pages/TopRatedMovies"
 
 function App() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-svh">
-      <Button>Click me</Button>
-    </div>
+    <>
+    {/* <CardGrid movies = {[{name:"hello", year:"hi"},{name:"hello", year:"hi"} ]}></CardGrid> */}
+    <TopRatedMovies></TopRatedMovies>
+    </>
   )
 }
 
