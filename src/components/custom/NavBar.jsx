@@ -13,7 +13,6 @@ const Navbar = () => {
         <div>
         <div>
         <NavButton label="Home" isActive={selected === "Home"} />
-        <NavButton label="Genres" isActive={selected === "Genres"} />
         <NavButton label="Top Rated" isActive={selected === "Top Rated"} />
         <NavButton label="Upcoming" isActive={selected === "Upcoming"} />
         <NavButton label="Search" isActive={selected === "Search"} />

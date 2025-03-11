@@ -7,7 +7,7 @@ import { head } from "motion/react-client";
 import { useSelector } from "react-redux";
 const MoviesPage = () => {
     // const heading = useSelector((state) => state.navigation)
-    const heading = "Top Rated";
+    const heading = "Upcoming";
     const dummyMovies = new Array(12).fill({ name: "Name", year: "Year", image: "path/to/image.jpg" });
   
     return (
