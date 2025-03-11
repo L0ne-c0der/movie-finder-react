@@ -40,13 +40,14 @@ import NavBar from "./components/custom/NavBar"
 import Footer from "./components/custom/Footer"
 import SortingButtons from "./components/custom/SortingButtons"
 import CardGrid from "./components/custom/CardGrid"
-import TopRatedMovies from "./pages/TopRatedMovies"
+import MoviesPage from "./pages/MoviesPage"
+import { HomePage } from "./pages/HomePage"
 
 function App() {
   return (
     <>
     {/* <CardGrid movies = {[{name:"hello", year:"hi"},{name:"hello", year:"hi"} ]}></CardGrid> */}
-    <TopRatedMovies></TopRatedMovies>
+    <HomePage ></HomePage>
     </>
   )
 }
