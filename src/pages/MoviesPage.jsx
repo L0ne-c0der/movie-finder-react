@@ -46,21 +46,23 @@ const MoviesPage = () => {
     const sortedMovies = sortMovies(movies, sortBy);
 
     return (
-        <div className="container mx-auto p-6">
+        <div className="flex flex-col min-h-screen">
             <Navbar selected="Top Rated"/>
-            <div className="flex justify-between items-center mt-6">
-                <h2 className="text-2xl font-bold">{heading} Movies</h2>
-                <SortingButtons />
-            </div>
-            {isLoading ? (
-                <div className="flex justify-center items-center h-64">
-                    <p className="text-xl">Loading movies...</p>
+            <div className="flex-grow px-6 max-w-7xl mx-auto w-full">
+                <div className="flex justify-between items-center mt-6">
+                    <h2 className="text-2xl font-bold">{heading} Movies</h2>
+                    <SortingButtons />
                 </div>
-            ) : (
-                <CardGrid 
-                    movies={sortedMovies}
-                />
-            )}
+                {isLoading ? (
+                    <div className="flex justify-center items-center h-64">
+                        <p className="text-xl">Loading movies...</p>
+                    </div>
+                ) : (
+                    <div className="mt-8">
+                        <CardGrid movies={sortedMovies} />
+                    </div>
+                )}
+            </div>
             <Footer />
         </div>
     );

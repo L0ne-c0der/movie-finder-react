@@ -1,19 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Navbar from "@/components/custom/Navbar";
 import SortingButtons from "@/components/custom/SortingButtons";
 import CardGrid from "@/components/custom/CardGrid";
 import Footer from "@/components/custom/Footer";
-import { useState, useEffect } from "react";
-import axios from "axios";
 import { useSelector } from "react-redux";
 import { sortMovies } from "../util/sortMovies";
-const MoviesPage = () => {
-    // const heading = useSelector((state) => state.navigation)
-    const heading = "Upcoming";
+
+const UpcomingPage = () => {
     const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const heading = "Upcoming";
     const sortBy = useSelector(state => state.filter.sortBy);
-
 
     useEffect(() => {
         const fetchMovies = async () => {
@@ -46,26 +44,28 @@ const MoviesPage = () => {
     }, []);
 
     const sortedMovies = sortMovies(movies, sortBy);
-    
 
     return (
-      <div className="container mx-auto p-6">
-        <Navbar selected="Upcoming"/>
-        <div className="flex justify-between items-center mt-6">
-          <h2 className="text-2xl font-bold">{heading} Movies</h2>
-          <SortingButtons />
-        </div>
-        {isLoading ? (
-             <div className="flex justify-center items-center h-64">
-            <p className="text-xl">Loading movies...</p>
+        <div className="flex flex-col min-h-screen">
+            <Navbar selected="Upcoming"/>
+            <div className="flex-grow px-6 max-w-7xl mx-auto w-full">
+                <div className="flex justify-between items-center mt-6">
+                    <h2 className="text-2xl font-bold">{heading} Movies</h2>
+                    <SortingButtons />
+                </div>
+                {isLoading ? (
+                    <div className="flex justify-center items-center h-64">
+                        <p className="text-xl">Loading movies...</p>
+                    </div>
+                ) : (
+                    <div className="mt-8">
+                        <CardGrid movies={sortedMovies} />
+                    </div>
+                )}
             </div>
-            ) : (
-            <CardGrid movies={sortedMovies} />
-        )}
-        <Footer />
-      </div>
+            <Footer />
+        </div>
     );
-  };
-export default MoviesPage;
-//top rated movies alignment header
-//nav bar needs to cover entire space
+};
+
+export default UpcomingPage;
