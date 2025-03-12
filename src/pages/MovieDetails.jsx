@@ -65,17 +65,17 @@ const MovieDetails = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="container mx-auto p-6 flex flex-col gap-8 flex-grow">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12"> {/* Increased gap */}
-          {/* Movie Poster with reduced size */}
-          <div className="w-full max-w-sm mx-auto"> {/* Changed from max-w-md to max-w-sm */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {/* Updated Movie Poster styling */}
+          <div className="w-full max-w-sm mx-auto flex items-center justify-center"> 
             {movie.poster_path ? (
               <img
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}
-                className="w-full h-[400px] object-cover rounded-lg shadow-lg"
+                className="w-full h-auto max-h-[500px] object-contain rounded-lg shadow-lg"
               />
             ) : (
-              <div className="w-full h-[400px] bg-gray-200 rounded-lg flex items-center justify-center">
+              <div className="w-full h-[500px] bg-gray-200 rounded-lg flex items-center justify-center">
                 <span className="text-gray-400">No image available</span>
               </div>
             )}
